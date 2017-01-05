@@ -13,7 +13,7 @@ def multiply(num1, num2):
 def divide(num1, num2):
     # Need to turn at least argument to float for division to
     # not be integer division
-    return float(num1) / float(num2) 
+    return float(num1) / float(num2)
 
 
 def square(num1):

@@ -7,7 +7,7 @@ calculator program yourself in this file.
 
 from arithmetic import *
 
-vars = raw_input("Enter operation you'd like and that numbers to use: \n")
+raw_list = raw_input("Enter operation you'd like and that numbers to use: \n")
 
 
 def calculator(operator, nums_only):
@@ -16,31 +16,38 @@ def calculator(operator, nums_only):
     if operator == "+":
         print reduce(add, nums_only)
     elif operator == "-":
-        print subtract(num1, num2)
+        print reduce(subtract, nums_only)
     elif operator == "*":
-        print multiply(num1, num2)
+        print reduce(multiply, nums_only)
     elif operator == "/":
-        print divide(num1, num2)
+        print reduce(divide, nums_only)
     elif operator == "square":
         print square(num1)
     elif operator == "cube":
         print cube(num1)
     elif operator == "pow":
-        print power(num1, num2)
+        print reduce(power, nums_only)
     elif operator == "mod":
-        print mod(num1, num2)
+        print reduce(mod, nums_only)
     else:
         print "Bye"
 
-while vars != "q":
+while raw_list != "q":
 
-    calcs = vars.split(" ")
+    calcs = raw_list.split(" ")
     print calcs
     operator = calcs[0]
+    print "Operator: {}".format(operator)
     nums_only = calcs[1:]
-    print nums_only
-    num1 = int(calcs[1])
-    if len(calcs) == 2:
-        num2 = 1
-    calculator(operator, nums_only)
-    vars = raw_input("Enter another calculation or q to quit: \n")
+    print "Still strings: {}".format(nums_only)
+    nums_only = map(int, nums_only)
+    print type(nums_only[0])
+
+    # num1 = int(calcs[1])
+    # if len(calcs) == 2:
+    #     num2 = 1
+    if (operator == "cube" or operator == "square") and len(nums_only) > 1:
+        print "You can't use that calculation with more than one number."
+    else:
+        calculator(operator, nums_only)
+    raw_list = raw_input("Enter another calculation or q to quit: \n")
