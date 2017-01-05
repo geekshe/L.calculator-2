@@ -10,11 +10,11 @@ from arithmetic import *
 vars = raw_input("Enter operation you'd like and that numbers to use: \n")
 
 
-def calculator(operator, num1, num2):
+def calculator(operator, nums_only):
     """Calculate numbers"""
 
     if operator == "+":
-        print add(num1, num2)
+        print reduce(add, nums_only)
     elif operator == "-":
         print subtract(num1, num2)
     elif operator == "*":
@@ -37,8 +37,10 @@ while vars != "q":
     calcs = vars.split(" ")
     print calcs
     operator = calcs[0]
+    nums_only = calcs[1:]
+    print nums_only
     num1 = int(calcs[1])
     if len(calcs) == 2:
         num2 = 1
-    calculator(operator, num1, num2)
+    calculator(operator, nums_only)
     vars = raw_input("Enter another calculation or q to quit: \n")
